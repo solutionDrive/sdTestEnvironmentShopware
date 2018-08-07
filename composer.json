@@ -1,0 +1,14 @@
+{
+  "name": "solutiondrive/sd-test-environment-shopware",
+  "description": "Docker based testing environment for shopware projects.",
+  "keywords": ["testing", "docker"],
+  "homepage": "https://solutiondrive.de",
+  "type": "library",
+  "license": [
+    "proprietary"
+  ],
+  "bin": [
+    "bin/sdTest.sh",
+    "bin/runInSdTest.sh"
+  ]
+}
