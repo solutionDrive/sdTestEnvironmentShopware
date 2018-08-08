@@ -120,6 +120,10 @@ export PROJECT_DIR
 export PROJECT_NAME
 
 case "$1" in
+    init)
+        shift
+        init_environment $@
+        ;;
     build)
         shift
         build_container $@
@@ -153,6 +157,6 @@ case "$1" in
         get_logs $@
         ;;
     *)
-        echo "usage: start/stop/run/restart/build/reset/remove/logs"
+        echo "usage: init/start/stop/run/restart/build/reset/remove/logs"
         ;;
 esac
