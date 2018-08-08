@@ -56,12 +56,18 @@ function echo_configuration {
 function init_environment {
     echo "Prepare directories"
     mkdir -p ${PROJECT_DIR}/etc/test
+    mkdir -p ${PROJECT_DIR}/etc/test/nginx
+    mkdir -p ${PROJECT_DIR}/etc/test/php
 
     echo "Copying testing README"
     cp ${PACKAGE_DIR}/README.md ${PROJECT_DIR}/README.TESTING.md
 
     echo "Copying docker-compose.yml to be able to easily modify it for special needs"
     cp ${PACKAGE_DIR}/docker-compose.yml ${PROJECT_DIR}/etc/test/docker-compose.yml
+
+    echo "Copying config files to be able to easily modify it for special needs"
+    cp ${PACKAGE_DIR}/php/* ${PROJECT_DIR}/etc/test/php
+    cp ${PACKAGE_DIR}/nginx/* ${PROJECT_DIR}/etc/test/nginx
 
     echo "You can find additional information in the testing README, see 'README.TESTING.md'"
 }
