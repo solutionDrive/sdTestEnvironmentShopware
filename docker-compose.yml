@@ -14,9 +14,9 @@ services:
     volumes:
       - shared_www:/var/www:delegated
       - ${PROJECT_DIR}:/opt/host:delegated
-      - ${PROJECT_DIR}/etc/test/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ${PROJECT_DIR}/etc/test/nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ${PROJECT_DIR}/etc/test/nginx/shopware.conf:/etc/nginx/conf.d/shopware.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/shopware.conf:/etc/nginx/conf.d/shopware.conf
     links:
       - shopware546_php72
       - shopware546_php71
@@ -36,8 +36,8 @@ services:
     volumes:
     - shared_www:/var/www:delegated
     - ${PROJECT_DIR}:/opt/host:delegated
-    - ${PROJECT_DIR}/etc/test/php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
-    - ${PROJECT_DIR}/etc/test/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
+    - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
     links:
     - mysql
     depends_on:
@@ -52,8 +52,8 @@ services:
     volumes:
     - shared_www:/var/www:delegated
     - ${PROJECT_DIR}:/opt/host:delegated
-    - ${PROJECT_DIR}/etc/test/php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
-    - ${PROJECT_DIR}/etc/test/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
+    - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
     links:
     - mysql
     depends_on:
@@ -68,8 +68,8 @@ services:
     volumes:
     - shared_www:/var/www:delegated
     - ${PROJECT_DIR}:/opt/host:delegated
-    - ${PROJECT_DIR}/etc/test/php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
-    - ${PROJECT_DIR}/etc/test/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
+    - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
     links:
     - mysql
     depends_on:
