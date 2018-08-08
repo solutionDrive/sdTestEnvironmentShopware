@@ -99,8 +99,8 @@ Executing a command in the testing environment
 Commands (for example to clear the cache or to run the setup) can be executed inside the container.
 You must give a version to execute command on, for example 7.1 for PHP 7.1 container:
 
-    vendor/bin/runInSdTest.sh 7.1 ./app/install.sh
+    vendor/bin/runInSdTest.sh 71 ./app/install.sh
 
 If you want to you can even get a shell inside the PHP container:
 
-    vendor/bin/runInSdTest.sh 7.1 /bin/bash
+    vendor/bin/runInSdTest.sh 71 /bin/bash

@@ -3,7 +3,7 @@
 VERSION=$1
 
 if [ -z "${VERSION}" ]; then
-    echo "You must give a version to execute command on, for example 7.1 for PHP 7.1 container."
+    echo "You must give a version to execute command on, for example 71 for PHP 7.1 container."
     exit 1
 fi
 
@@ -25,7 +25,8 @@ fi
 
 PROJECT_DIR="$( dirname $( dirname $( dirname "${PACKAGE_DIR}") ) )"
 PROJECT_NAME="$( basename ${PROJECT_DIR} | tr '[:upper:]' '[:lower:]' )"
-PHP_CONTAINER_NAME="${PROJECT_NAME}_php${VERSION}_1"
+# TODO: Think about a good solution for a different shopware version
+PHP_CONTAINER_NAME="${PROJECT_NAME}_shopware546_php${VERSION}_1"
 
 docker exec --workdir ${WORKDIR:-"/var/www/project${VERSION}"} -it ${PHP_CONTAINER_NAME} $@
 
