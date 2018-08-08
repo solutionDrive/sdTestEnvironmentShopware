@@ -8,7 +8,6 @@ services:
     environment:
       - TZ=Europe/Berlin
     ports:
-      - "10856:10856"
       - "10870:10870"
       - "10871:10871"
       - "10872:10872"
@@ -21,13 +20,11 @@ services:
       - shopware546_php72
       - shopware546_php71
       - shopware546_php70
-      - shopware546_php56
       - mysql
     depends_on:
       - shopware546_php72
       - shopware546_php71
       - shopware546_php70
-      - shopware546_php56
 
   shopware546_php72:
     image: solutiondrive/docker-shopware-container:shopware5.4.6php7.2
@@ -76,22 +73,6 @@ services:
     - mysql
     depends_on:
     - mysql
-
-  shopware546_php56:
-    image: solutiondrive/docker-shopware-container:shopware5.4.6php5.6
-    environment:
-      - TZ=Europe/Berlin
-      - MYSQL_DATABASE=shopware546_php56
-      - WEB_HOST=localhost:10856
-    volumes:
-      - shared_www:/var/www:delegated
-      - ${PROJECT_DIR}:/opt/host:delegated
-      - ${PACKAGE_DIR}/php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
-      - ${PACKAGE_DIR}/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
-    links:
-      - mysql
-    depends_on:
-      - mysql
 
   mysql:
     image: mysql:5.7.20
