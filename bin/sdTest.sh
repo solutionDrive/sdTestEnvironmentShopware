@@ -22,6 +22,7 @@ if [ ! -d ${PACKAGE_DIR} ]; then
 fi
 
 export PROJECT_DIR="$( dirname $( dirname $( dirname "${PACKAGE_DIR}") ) )"
+export PACKAGE_DIR="${PACKAGE_DIR}"
 export PROJECT_NAME="$( basename ${PROJECT_DIR} | tr '[:upper:]' '[:lower:]' )"
 export DOCKER_COMPOSE_YAML=${PROJECT_DIR}"/etc/test/docker-compose.yml"
 
@@ -48,6 +49,7 @@ function echo_configuration {
     echo ""
     echo "PROJECT_DIR: ${PROJECT_DIR}"
     echo "PROJECT_NAME: ${PROJECT_NAME}"
+    echo "PACKAGE_DIR: ${PACKAGE_DIR}"
     echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 }
 
