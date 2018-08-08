@@ -1,0 +1,3 @@
+# Exclude files that are created during test runs
+/README.TESTING.md
+/etc/test/*
