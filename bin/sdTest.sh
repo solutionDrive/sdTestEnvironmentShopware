@@ -57,6 +57,7 @@ function init_environment {
     echo "Prepare directories"
     mkdir -p ${PROJECT_DIR}/etc/test
     mkdir -p ${PROJECT_DIR}/etc/test/nginx
+    mkdir -p ${PROJECT_DIR}/etc/test/nginx/conf.d
     mkdir -p ${PROJECT_DIR}/etc/test/php
 
     echo "Copying testing README"
@@ -67,7 +68,7 @@ function init_environment {
 
     echo "Copying config files to be able to easily modify it for special needs"
     cp ${PACKAGE_DIR}/php/* ${PROJECT_DIR}/etc/test/php
-    cp ${PACKAGE_DIR}/nginx/* ${PROJECT_DIR}/etc/test/nginx
+    cp -R ${PACKAGE_DIR}/nginx/* ${PROJECT_DIR}/etc/test/nginx
 
     echo "You can find additional information in the testing README, see 'README.TESTING.md'"
 }
