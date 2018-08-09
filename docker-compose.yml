@@ -31,7 +31,7 @@ services:
     image: solutiondrive/docker-shopware-container:shopware5.4.6-php7.2
     environment:
     - TZ=Europe/Berlin
-    - MYSQL_DATABASE=shopware546_php7.2
+    - DB_DATABASE=shopware54_php72
     - WEB_HOST=localhost:10870
     volumes:
     - shared_www:/var/www:delegated
@@ -47,7 +47,7 @@ services:
     image: solutiondrive/docker-shopware-container:shopware5.4.6-php7.1
     environment:
     - TZ=Europe/Berlin
-    - MYSQL_DATABASE=shopware546_php7.0
+    - DB_DATABASE=shopware54_php71
     - WEB_HOST=localhost:10871
     volumes:
     - shared_www:/var/www:delegated
@@ -63,7 +63,7 @@ services:
     image: solutiondrive/docker-shopware-container:shopware5.4.6-php7.0
     environment:
     - TZ=Europe/Berlin
-    - MYSQL_DATABASE=shopware546_php7.0
+    - DB_DATABASE=shopware54_php70
     - WEB_HOST=localhost:10870
     volumes:
     - shared_www:/var/www:delegated
