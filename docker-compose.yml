@@ -32,7 +32,7 @@ services:
     environment:
     - TZ=Europe/Berlin
     - DB_DATABASE=shopware54_php72
-    - WEB_HOST=localhost:10870
+    - WEB_HOST=localhost:10872
     volumes:
     - shared_www:/var/www:delegated
     - ${PROJECT_DIR}:/opt/host:delegated
