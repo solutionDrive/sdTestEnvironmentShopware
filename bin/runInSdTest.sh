@@ -29,5 +29,4 @@ PROJECT_NAME="$( basename ${PROJECT_DIR} | tr '[:upper:]' '[:lower:]' )"
 PHP_CONTAINER_NAME="${PROJECT_NAME}_shopware546_php${VERSION}_1"
 WORK_DIR="/var/www/shopware54_php${VERSION}"
 
-docker exec --workdir ${WORK_DIR} -it ${PHP_CONTAINER_NAME} $@
-
+docker exec --workdir ${WORK_DIR} -it ${PHP_CONTAINER_NAME} ${@:2}
