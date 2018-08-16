@@ -55,9 +55,9 @@ function activate_plugin {
 }
 
 function reset_plugin {
-    execute_in_docker "bin/console sw:plugin:refresh"
-
-    echo "reset plugin"
+    execute_in_docker "bin/console sw:plugin:deactivate $PLUGIN_NAME"
+    execute_in_docker "bin/console sw:plugin:uninstall $PLUGIN_NAME"
+    execute_in_docker "rm $PLUGIN_DIRECTORY"
 }
 
 function execute_in_docker {
