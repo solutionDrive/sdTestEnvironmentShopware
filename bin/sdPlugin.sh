@@ -66,7 +66,7 @@ function remove_plugin {
 }
 
 function execute_in_docker {
- docker exec --workdir ${WORK_DIR} -it ${PHP_CONTAINER_NAME} $1
+    docker exec --workdir ${WORK_DIR} -it ${PHP_CONTAINER_NAME} $1
 }
 
 ## start of the real program
