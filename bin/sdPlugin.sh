@@ -54,8 +54,13 @@ function activate_plugin {
     execute_in_docker "bin/console sw:cache:clear"
 }
 
-function remove_plugin {
+function deactivate_plugin {
     execute_in_docker "bin/console sw:plugin:deactivate $PLUGIN_NAME"
+    execute_in_docker "bin/console sw:cache:clear"
+}
+
+function remove_plugin {
+    deactivate_plugin
     execute_in_docker "bin/console sw:plugin:uninstall $PLUGIN_NAME"
     execute_in_docker "rm $PLUGIN_DIRECTORY"
 }
@@ -79,7 +84,15 @@ case "$2" in
         shift
         remove_plugin $@
         ;;
+    activate)
+        shift
+        activate_plugin $@
+        ;;
+    deactivate)
+        shift
+        activate_plugin $@
+        ;;
     *)
-        echo "usage: add/remove"
+        echo "usage: add/remove/activate/deactivate"
         ;;
 esac
