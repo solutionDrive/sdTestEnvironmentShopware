@@ -26,7 +26,7 @@ fi
 PROJECT_DIR="$( dirname $( dirname $( dirname "${PACKAGE_DIR}") ) )"
 PROJECT_NAME="$( basename ${PROJECT_DIR} | tr '[:upper:]' '[:lower:]' )"
 # TODO: Think about a good solution for a different shopware version
-PHP_CONTAINER_NAME="${PROJECT_NAME}_shopware546_php${VERSION}_1"
+PHP_CONTAINER_NAME="${PROJECT_NAME}_shopware54_php${VERSION}_1"
 WORK_DIR=${WORK_DIR:-"/var/www/shopware54_php${VERSION}"}
 
 docker exec --workdir ${WORK_DIR} -it ${PHP_CONTAINER_NAME} ${@:2}
