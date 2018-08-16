@@ -37,6 +37,19 @@ Usage / First steps
 First you should start the testing docker containers (see also next section of this README):
 
     vendor/bin/sdTest.sh start
+    
+    
+(De-)Activating plugin
+-------------------
+
+You must give a version to execute command on, for example 7.1 for PHP 7.1 container:
+
+    vendor/bin/sdPlugin.sh 71 add
+    
+For deactivating plugin run:
+
+    vendor/bin/sdPlugin.sh 71 remove
+
 
 Controlling the testing environment
 -----------------------------------
