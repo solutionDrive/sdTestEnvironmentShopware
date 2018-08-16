@@ -90,7 +90,7 @@ case "$2" in
         ;;
     deactivate)
         shift
-        activate_plugin $@
+        deactivate_plugin $@
         ;;
     *)
         echo "usage: add/remove/activate/deactivate"
