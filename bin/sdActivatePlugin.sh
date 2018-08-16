@@ -32,7 +32,7 @@ PLUGIN_NAME=$(find . -name '*.php' -maxdepth 1 |sed 's#.*/##' | sed 's/\.php$//1
 
 PLUGIN_DIRECTORY="custom/plugins/$PLUGIN_NAME"
 
-function init_plugin {
+function add_plugin {
     echo "Init plugin $PLUGIN_NAME"
     link_plugin
     install_plugin
@@ -54,7 +54,7 @@ function activate_plugin {
     execute_in_docker "bin/console sw:cache:clear"
 }
 
-function reset_plugin {
+function remove_plugin {
     execute_in_docker "bin/console sw:plugin:deactivate $PLUGIN_NAME"
     execute_in_docker "bin/console sw:plugin:uninstall $PLUGIN_NAME"
     execute_in_docker "rm $PLUGIN_DIRECTORY"
@@ -71,15 +71,15 @@ export PROJECT_DIR
 export PROJECT_NAME
 
 case "$2" in
-    init)
+    add)
         shift
-        init_plugin $@
+        add_plugin $@
         ;;
-    reset)
+    remove)
         shift
-        reset_plugin $@
+        remove_plugin $@
         ;;
     *)
-        echo "usage: init/reset"
+        echo "usage: add/remove"
         ;;
 esac
