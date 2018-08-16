@@ -87,7 +87,7 @@ function run_container {
 function start_container {
     prepare
     echo_configuration
-    docker_compose_cmd up --no-start $@
+    docker_compose_cmd up --no-start --remove-orphans $@
     docker_compose_cmd start $@
 }
 
