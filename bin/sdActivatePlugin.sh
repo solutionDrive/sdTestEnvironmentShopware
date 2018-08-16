@@ -28,20 +28,41 @@ PROJECT_NAME="$( basename ${PROJECT_DIR} | tr '[:upper:]' '[:lower:]' )"
 PHP_CONTAINER_NAME="${PROJECT_NAME}_shopware546_php${VERSION}_1"
 WORK_DIR="/var/www/shopware54_php${VERSION}"
 
-PLUGIN_DIRECTORY="custom/plugins/$PROJECT_NAME"
+PLUGIN_NAME=$(find . -name '*.php' -maxdepth 1 |sed 's#.*/##' | sed 's/\.php$//1')
+
+PLUGIN_DIRECTORY="custom/plugins/$PLUGIN_NAME"
 
 function init_plugin {
-    echo "Init plugin $PROJECT_NAME"
+    echo "Init plugin $PLUGIN_NAME"
     link_plugin
+    install_plugin
+    activate_plugin
 }
 
 function link_plugin {
     echo "Link plugin $PROJECT_NAME to $PLUGIN_DIRECTORY"
-    docker exec --workdir ${WORK_DIR} -it ${PHP_CONTAINER_NAME}  ln -s /opt/host $PLUGIN_DIRECTORY
+    execute_in_docker "ln -s /opt/host $PLUGIN_DIRECTORY"
+}
+
+function install_plugin {
+    execute_in_docker "bin/console sw:plugin:refresh"
+    execute_in_docker "bin/console sw:plugin:install $PLUGIN_NAME"
+}
+
+function activate_plugin {
+    execute_in_docker "bin/console sw:plugin:activate $PLUGIN_NAME"
+    execute_in_docker "bin/console sw:cache:clear"
 }
 
 function reset_plugin {
+    execute_in_docker "bin/console sw:plugin:refresh"
+
     echo "reset plugin"
+}
+
+function execute_in_docker {
+
+ docker exec --workdir ${WORK_DIR} -it ${PHP_CONTAINER_NAME} $1
 }
 
 ## start of the real program
