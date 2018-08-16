@@ -24,7 +24,11 @@ fi
 
 PROJECT_DIR="$( dirname $( dirname $( dirname "${PACKAGE_DIR}") ) )"
 PROJECT_NAME="$( basename ${PROJECT_DIR} | tr '[:upper:]' '[:lower:]' )"
+# TODO: Think about a good solution for a different shopware version
+PHP_CONTAINER_NAME="${PROJECT_NAME}_shopware546_php${VERSION}_1"
 WORK_DIR="/var/www/shopware54_php${VERSION}"
+
+PLUGIN_DIRECTORY="custom/plugins/$PROJECT_NAME"
 
 function init_plugin {
     echo "Init plugin $PROJECT_NAME"
@@ -32,8 +36,8 @@ function init_plugin {
 }
 
 function link_plugin {
-    echo "Link plugin $PROJECT_NAME"
-
+    echo "Link plugin $PROJECT_NAME to $PLUGIN_DIRECTORY"
+    docker exec --workdir ${WORK_DIR} -it ${PHP_CONTAINER_NAME}  ln -s /opt/host $PLUGIN_DIRECTORY
 }
 
 function reset_plugin {
