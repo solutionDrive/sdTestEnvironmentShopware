@@ -42,7 +42,7 @@ First you should start the testing docker containers (see also next section of t
 Handle plugin
 -------------
 
-For all following commands you must pass a php version, for example 7.1 for PHP 7.1 container:
+For all following commands you must pass a php version, e.g. 71 for PHP 7.1 container:
 
 For adding the plugin run:
 
@@ -120,7 +120,7 @@ Executing a command in the testing environment
 ----------------------------------------------
 
 Commands (for example to clear the cache or to run the setup) can be executed inside the container.
-You must give a version to execute command on, for example 7.1 for PHP 7.1 container:
+You must give a version to execute command on, e.g. 71 for PHP 7.1 container:
 
     vendor/bin/runInSdTest.sh 71 ./app/install.sh
 
