@@ -8,7 +8,8 @@
     "proprietary"
   ],
   "bin": [
-    "bin/sdTest.sh",
-    "bin/runInSdTest.sh"
+    "bin/runInSdTest.sh",
+    "bin/sdPlugin.sh",
+    "bin/sdTest.sh"
   ]
 }
