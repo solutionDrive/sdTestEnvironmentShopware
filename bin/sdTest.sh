@@ -106,6 +106,10 @@ function remove_container {
     docker_compose_cmd rm -v $@
 }
 
+function pull_container {
+    docker_compose_cmd pull $@
+}
+
 function get_logs {
     docker_compose_cmd logs $@
 }
@@ -161,11 +165,15 @@ case "$1" in
         shift
         remove_container $@
         ;;
+    pull)
+        shift
+        pull_container $@
+        ;;
     log|logs)
         shift
         get_logs $@
         ;;
     *)
-        echo "usage: init/start/stop/run/restart/build/reset/remove/logs"
+        echo "usage: init/start/stop/run/restart/build/reset/remove/pull/logs"
         ;;
 esac
