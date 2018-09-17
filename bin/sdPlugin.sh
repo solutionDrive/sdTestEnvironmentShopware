@@ -92,6 +92,6 @@ case "$2" in
         deactivate_plugin $@
         ;;
     *)
-        echo "usage: add/remove/activate/deactivate"
+        echo "usage: <php-version for example 71> add/remove/activate/deactivate"
         ;;
 esac
