@@ -112,6 +112,10 @@ To be sure that you have the latest version of the (base) containers you can for
     
     vendor/bin/sdTest.sh build --no-cache --pull
 
+To be sure to use the newest containers (not only build based containers):
+
+    vendor/bin/sdTest.sh pull
+
 To destroy and restart your containers in one step without rebuilding images run:
 
     vendor/bin/sdTest.sh reset
