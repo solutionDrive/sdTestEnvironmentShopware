@@ -1,7 +1,5 @@
 version: '3'
 
-# You must define following environment variables:
-
 services:
   nginx:
     image: nginx:1.15-alpine
