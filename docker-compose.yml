@@ -30,50 +30,50 @@ services:
   shopware54_php72:
     image: solutiondrive/docker-shopware-container:shopware5.4.6-php7.2
     environment:
-    - TZ=Europe/Berlin
-    - DB_DATABASE=shopware54_php72
-    - WEB_HOST=localhost:10872
+      - TZ=Europe/Berlin
+      - DB_DATABASE=shopware54_php72
+      - WEB_HOST=localhost:10872
     volumes:
-    - shopware54_php72:/var/www/shopware54_php72:delegated
-    - ${PROJECT_DIR}:/opt/host:delegated
-    - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
-    - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - shopware54_php72:/var/www/shopware54_php72:delegated
+      - ${PROJECT_DIR}:/opt/host:delegated
+      - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
+      - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
     links:
-    - mysql
+      - mysql
     depends_on:
-    - mysql
+     - mysql
 
   shopware54_php71:
     image: solutiondrive/docker-shopware-container:shopware5.4.6-php7.1
     environment:
-    - TZ=Europe/Berlin
-    - DB_DATABASE=shopware54_php71
-    - WEB_HOST=localhost:10871
+      - TZ=Europe/Berlin
+      - DB_DATABASE=shopware54_php71
+      - WEB_HOST=localhost:10871
     volumes:
-    - shopware54_php71:/var/www/shopware54_php71:delegated
-    - ${PROJECT_DIR}:/opt/host:delegated
-    - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
-    - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - shopware54_php71:/var/www/shopware54_php71:delegated
+      - ${PROJECT_DIR}:/opt/host:delegated
+      - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
+      - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
     links:
-    - mysql
+      - mysql
     depends_on:
-    - mysql
+      - mysql
 
   shopware54_php70:
     image: solutiondrive/docker-shopware-container:shopware5.4.6-php7.0
     environment:
-    - TZ=Europe/Berlin
-    - DB_DATABASE=shopware54_php70
-    - WEB_HOST=localhost:10870
+      - TZ=Europe/Berlin
+      - DB_DATABASE=shopware54_php70
+      - WEB_HOST=localhost:10870
     volumes:
-    - shopware54_php70:/var/www/shopware54_php70:delegated
-    - ${PROJECT_DIR}:/opt/host:delegated
-    - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
-    - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - shopware54_php70:/var/www/shopware54_php70:delegated
+      - ${PROJECT_DIR}:/opt/host:delegated
+      - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
+      - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
     links:
-    - mysql
+      - mysql
     depends_on:
-    - mysql
+      - mysql
 
   mysql:
     image: mysql:5.7.20
