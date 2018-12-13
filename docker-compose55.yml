@@ -28,7 +28,7 @@ services:
       - shopware55_php70
 
   shopware55_php72:
-    image: solutiondrive/docker-shopware-container:shopware5.4.6-php7.2
+    image: solutiondrive/docker-shopware-container:shopware5.5.2-php7.2
     environment:
       - TZ=Europe/Berlin
       - DB_DATABASE=shopware55_php72
@@ -44,7 +44,7 @@ services:
       - mysql
 
   shopware55_php71:
-    image: solutiondrive/docker-shopware-container:shopware5.4.6-php7.1
+    image: solutiondrive/docker-shopware-container:shopware5.5.2-php7.1
     environment:
       - TZ=Europe/Berlin
       - DB_DATABASE=shopware55_php71
@@ -60,7 +60,7 @@ services:
       - mysql
 
   shopware55_php70:
-    image: solutiondrive/docker-shopware-container:shopware5.4.6-php7.0
+    image: solutiondrive/docker-shopware-container:shopware5.5.2-php7.0
     environment:
       - TZ=Europe/Berlin
       - DB_DATABASE=shopware55_php70
