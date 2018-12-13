@@ -44,6 +44,7 @@ Handle plugin
 
 For all following commands you must pass a php version, e.g. 71 for PHP 7.1 container:
 
+
 For adding the plugin run:
 
     vendor/bin/sdPlugin.sh 71 add
