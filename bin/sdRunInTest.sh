@@ -3,6 +3,15 @@
 VERSION=$1
 SHOPWARE_VERSION=$2
 
+# Remove Shopware-Version from `$@`, so it is not passed to docker-compose command
+for arg do
+  shift
+  case $arg in
+    (52|53|54|55) : ;;
+       (*) set -- "$@" "$arg" ;;
+  esac
+done
+
 if [ -z "${SHOPWARE_VERSION}" ]; then
     echo "You must provide the version of shopware you want to interact with, e.g. 54 for shopware 5.4"
     exit 1
