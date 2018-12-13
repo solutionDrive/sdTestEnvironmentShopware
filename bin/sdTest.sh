@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+SHOPWARE_VERSION=$1
+
+if [ -z "${SHOPWARE_VERSION}" ]; then
+    echo "You must provide the version of shopware you want to interact with, e.g. 54 for shopware 5.4"
+    exit 1
+fi
+
 # directory of this script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -64,7 +71,7 @@ function init_environment {
     cp ${PACKAGE_DIR}/README.md ${PROJECT_DIR}/README.TESTING.md
 
     echo "Copying docker-compose.yml to be able to easily modify it for special needs"
-    cp ${PACKAGE_DIR}/docker-compose.yml ${PROJECT_DIR}/etc/test/docker-compose.yml
+    cp ${PACKAGE_DIR}/docker-compose${SHOPWARE_VERSION}.yml ${PROJECT_DIR}/etc/test/docker-compose.yml
 
     echo "Copying config files to be able to easily modify it for special needs"
     cp ${PACKAGE_DIR}/php/* ${PROJECT_DIR}/etc/test/php

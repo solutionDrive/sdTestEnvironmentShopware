@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
 VERSION=$1
+SHOPWARE_VERSION=$2
+
+if [ -z "${SHOPWARE_VERSION}" ]; then
+    echo "You must provide the version of shopware you want to interact with, e.g. 54 for shopware 5.4"
+    exit 1
+fi
 
 if [ -z "${VERSION}" ]; then
     echo "You must give a version to execute command on, for example 71 for PHP 7.1 container."
@@ -26,7 +32,7 @@ fi
 PROJECT_DIR="$( dirname $( dirname $( dirname "${PACKAGE_DIR}") ) )"
 PROJECT_NAME="$( basename ${PROJECT_DIR} | tr '[:upper:]' '[:lower:]' )"
 # TODO: Think about a good solution for a different shopware version
-PHP_CONTAINER_NAME="${PROJECT_NAME}_shopware54_php${VERSION}_1"
-WORK_DIR=${WORK_DIR:-"/var/www/shopware54_php${VERSION}"}
+PHP_CONTAINER_NAME="${PROJECT_NAME}_shopware${SHOPWARE_VERSION}_php${VERSION}_1"
+WORK_DIR=${WORK_DIR:-"/var/www/shopware${SHOPWARE_VERSION}_php${VERSION}"}
 
 docker exec --workdir ${WORK_DIR} -it $(docker container ls -f name=${PHP_CONTAINER_NAME} -q) ${@:2}
