@@ -1,5 +1,23 @@
 #!/usr/bin/env bash
 
+SHOPWARE_VERSION=$2
+
+# Remove Shopware-Version from `$@`, so it is not passed to docker-compose command
+for arg do
+  shift
+  case $arg in
+    (52|53|54|55) : ;;
+       (*) set -- "$@" "$arg" ;;
+
+  esac
+done
+
+
+if [ -z "${SHOPWARE_VERSION}" ]; then
+    echo "You must provide the version of shopware you want to interact with, e.g. 54 for shopware 5.4"
+    exit 1
+fi
+
 # directory of this script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -24,7 +42,7 @@ fi
 export PROJECT_DIR="$( dirname $( dirname $( dirname "${PACKAGE_DIR}") ) )"
 export PACKAGE_DIR="${PACKAGE_DIR}"
 export PROJECT_NAME="$( basename ${PROJECT_DIR} | tr '[:upper:]' '[:lower:]' )"
-export DOCKER_COMPOSE_YAML=${PROJECT_DIR}"/etc/test/docker-compose.yml"
+export DOCKER_COMPOSE_YAML=${PROJECT_DIR}"/etc/test/docker-compose${SHOPWARE_VERSION}.yml"
 
 if [ "$1" != "init" ]; then
     source ${PACKAGE_DIR}/etc/scripts/checkSdTestEnvironment.sh
@@ -41,11 +59,11 @@ function prepare {
 function echo_configuration {
     echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     echo "Running (web)server on ports:"
-    echo "PHP 7.2: 10872"
-    echo "PHP 7.1: 10871"
-    echo "PHP 7.0: 10870"
-    echo "PHP 5.6: 10856"
-    echo "MySQL:   10331"
+    echo "PHP 7.2: ${SHOPWARE_VERSION}872"
+    echo "PHP 7.1: ${SHOPWARE_VERSION}871"
+    echo "PHP 7.0: ${SHOPWARE_VERSION}870"
+    echo "PHP 5.6: ${SHOPWARE_VERSION}856"
+    echo "MySQL:   ${SHOPWARE_VERSION}331"
     echo ""
     echo "PROJECT_DIR: ${PROJECT_DIR}"
     echo "PROJECT_NAME: ${PROJECT_NAME}"
@@ -64,7 +82,7 @@ function init_environment {
     cp ${PACKAGE_DIR}/README.md ${PROJECT_DIR}/README.TESTING.md
 
     echo "Copying docker-compose.yml to be able to easily modify it for special needs"
-    cp ${PACKAGE_DIR}/docker-compose.yml ${PROJECT_DIR}/etc/test/docker-compose.yml
+    cp ${PACKAGE_DIR}/docker-compose${SHOPWARE_VERSION}.yml ${PROJECT_DIR}/etc/test/docker-compose${SHOPWARE_VERSION}.yml
 
     echo "Copying config files to be able to easily modify it for special needs"
     cp ${PACKAGE_DIR}/php/* ${PROJECT_DIR}/etc/test/php
@@ -174,6 +192,6 @@ case "$1" in
         get_logs $@
         ;;
     *)
-        echo "usage: init/start/stop/run/restart/build/reset/remove/pull/logs"
+        echo "usage: init/start/stop/run/restart/build/reset/remove/pull/logs <Shopware-Version, e.g. 54 for shopware 5.4>"
         ;;
 esac

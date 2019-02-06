@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
-VERSION=$1
+PHP_VERSION=$1
+SHOPWARE_VERSION=$2
 
-if [ -z "${VERSION}" ]; then
+if [ -z "${SHOPWARE_VERSION}" ]; then
+    echo "You must provide the version of shopware you want to interact with, e.g. 54 for shopware 5.4"
+    exit 1
+fi
+
+
+if [ -z "${PHP_VERSION}" ]; then
     echo "You must give a version to execute command on, for example 71 for PHP 7.1 container."
     exit 1
 fi
@@ -25,8 +32,8 @@ fi
 PROJECT_DIR="$( dirname $( dirname $( dirname "${PACKAGE_DIR}") ) )"
 PROJECT_NAME="$( basename ${PROJECT_DIR} | tr '[:upper:]' '[:lower:]' )"
 # TODO: Think about a good solution for a different shopware version
-PHP_CONTAINER_NAME="${PROJECT_NAME}_shopware54_php${VERSION}_1"
-WORK_DIR="/var/www/shopware54_php${VERSION}"
+PHP_CONTAINER_NAME="${PROJECT_NAME}_shopware${SHOPWARE_VERSION}_php${PHP_VERSION}_1"
+WORK_DIR="/var/www/shopware${SHOPWARE_VERSION}_php${PHP_VERSION}"
 
 PLUGIN_NAME=$(find . -name '*.php' -maxdepth 1 |sed 's#.*/##' | sed 's/\.php$//1')
 
@@ -74,7 +81,7 @@ function execute_in_docker {
 export PROJECT_DIR
 export PROJECT_NAME
 
-case "$2" in
+case "$3" in
     add)
         shift
         add_plugin $@
@@ -92,6 +99,7 @@ case "$2" in
         deactivate_plugin $@
         ;;
     *)
-        echo "usage: <php-version for example 71> add/remove/activate/deactivate"
+        echo "usage: <php-version for example 71> [shopware-version] add/remove/activate/deactivate"
+        echo "valid values for shopware-version: 52 | 53 | 54 | 55 (default)"
         ;;
 esac
