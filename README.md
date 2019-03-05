@@ -22,9 +22,9 @@ add the following dependency to your project's composer.json's require-dev secti
 
 Then do a `composer update` or use `composer require --dev` instead. 
 
-To initialize the testing environment simply run the following:
+To initialize the testing environment, e.g. for Shopware 5.4.x simply run the following:
 
-    vendor/bin/sdTest.sh init
+    vendor/bin/sdTest.sh init 54
 
 This will create some files:
 
@@ -64,23 +64,29 @@ For deactivating the plugin run:
 Controlling the testing environment
 -----------------------------------
 
-To start the containers and get back your local shell just run:
+List of SHOPWARE_VERSION:
+- 52 -> v5.2.x
+- 53 -> v5.3.x
+- 54 -> v5.4.x
+- 55 -> v5.5.x
 
-    vendor/bin/sdTest.sh start
+To start the containers e.g. with shopware 5.4 and get back your local shell just run:
+
+    vendor/bin/sdTest.sh start 54
     
 To stop the containers run:
 
-    vendor/bin/sdTest.sh stop
+    vendor/bin/sdTest.sh stop SHOPWARE_VERSION
 
 In stopped state the containers data is saved.
 
 To destroy your containers you can run:
 
-    vendor/bin/sdTest.sh remove
+    vendor/bin/sdTest.sh remove SHOPWARE_VERSION
 
 To restart your containers without loosing data you can run:
 
-    vendor/bin/sdTest.sh restart
+    vendor/bin/sdTest.sh restart SHOPWARE_VERSION
 
 
 Can can also run the containers in foreground to monitor the log output of the containers:
@@ -124,10 +130,10 @@ Executing a command in the testing environment
 ----------------------------------------------
 
 Commands (for example to clear the cache or to run the setup) can be executed inside the container.
-You must give a version to execute command on, e.g. 71 for PHP 7.1 container:
+You must give a version of php and shopware to execute command on, e.g. 71 for PHP 7.1 container and 54 for Shopware 5.4.x:
 
-    vendor/bin/sdRunInTest.sh 71 ./app/install.sh
+    vendor/bin/sdRunInTest.sh 71 54 ./app/install.sh
 
 If you want to you can even get a shell inside the PHP container:
 
-    vendor/bin/sdRunInTest.sh 71 /bin/bash
+    vendor/bin/sdRunInTest.sh 71 54 /bin/bash
