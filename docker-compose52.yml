@@ -6,26 +6,50 @@ services:
     environment:
       - TZ=Europe/Berlin
     ports:
+      - "52856:52856"
       - "52870:52870"
       - "52871:52871"
       - "52872:52872"
+      - "52873:52873"
     volumes:
+      - shopware52_php73:/var/www/shopware52_php73:delegated
       - shopware52_php72:/var/www/shopware52_php72:delegated
       - shopware52_php71:/var/www/shopware52_php71:delegated
       - shopware52_php70:/var/www/shopware52_php70:delegated
+      - shopware52_php56:/var/www/shopware52_php56:delegated
       - ${PROJECT_DIR}:/opt/host:delegated
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/include.shopware.conf:/etc/nginx/include.shopware.conf
       - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
     links:
+      - shopware52_php73
       - shopware52_php72
       - shopware52_php71
       - shopware52_php70
+      - shopware52_php56
       - mysql
     depends_on:
+      - shopware52_php73
       - shopware52_php72
       - shopware52_php71
       - shopware52_php70
+      - shopware52_php56
+
+  shopware52_php73:
+    image: solutiondrive/docker-shopware-container:shopware5.2.27-php7.3
+    environment:
+      - TZ=Europe/Berlin
+      - DB_DATABASE=shopware52_php73
+      - WEB_HOST=localhost:52873
+    volumes:
+      - shopware52_php73:/var/www/shopware52_php73:delegated
+      - ${PROJECT_DIR}:/opt/host:delegated
+      - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
+      - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    links:
+      - mysql
+    depends_on:
+      - mysql
 
   shopware52_php72:
     image: solutiondrive/docker-shopware-container:shopware5.2.27-php7.2
@@ -75,6 +99,22 @@ services:
     depends_on:
       - mysql
 
+  shopware52_php56:
+    image: solutiondrive/docker-shopware-container:shopware5.2.27-php5.6
+    environment:
+      - TZ=Europe/Berlin
+      - DB_DATABASE=shopware52_php56
+      - WEB_HOST=localhost:52856
+    volumes:
+      - shopware52_php56:/var/www/shopware52_php56:delegated
+      - ${PROJECT_DIR}:/opt/host:delegated
+      - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
+      - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+    links:
+      - mysql
+    depends_on:
+      - mysql
+
   mysql:
     image: mysql:5.7.20
     environment:
@@ -85,6 +125,8 @@ services:
       - "52331:3306"
 
 volumes:
+  shopware52_php73:
   shopware52_php72:
   shopware52_php71:
   shopware52_php70:
+  shopware52_php56:
