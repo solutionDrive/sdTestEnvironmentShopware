@@ -65,8 +65,8 @@ services:
       - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
       - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
     links:
-      - my
-      - mailhogsql
+      - mysql
+      - mailhog
     depends_on:
      - mysql
      - mailhog
