@@ -43,8 +43,10 @@ services:
       - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
     links:
       - mysql
+      - mailhog
     depends_on:
       - mysql
+      - mailhog
 
   shopware55_php71:
     image: solutiondrive/docker-shopware-container:shopware5.5.2-php7.1
@@ -59,8 +61,10 @@ services:
       - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
     links:
       - mysql
+      - mailhog
     depends_on:
       - mysql
+      - mailhog
 
   shopware55_php70:
     image: solutiondrive/docker-shopware-container:shopware5.5.2-php7.0
@@ -75,8 +79,10 @@ services:
       - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
     links:
       - mysql
+      - mailhog
     depends_on:
       - mysql
+      - mailhog
 
   shopware55_php56:
     image: solutiondrive/docker-shopware-container:shopware5.5.2-php5.6
@@ -91,8 +97,10 @@ services:
       - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
     links:
       - mysql
+      - mailhog
     depends_on:
       - mysql
+      - mailhog
 
   mysql:
     image: mysql:5.7.20
@@ -102,6 +110,11 @@ services:
       - MYSQL_DATABASE=test
     ports:
       - "55331:3306"
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - "8055:8025"
 
 volumes:
   shopware55_php72:
