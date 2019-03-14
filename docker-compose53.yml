@@ -46,10 +46,13 @@ services:
       - ${PROJECT_DIR}:/opt/host:delegated
       - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
       - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./php/msmtprc:/etc/msmtprc
     links:
       - mysql
+      - mailhog
     depends_on:
       - mysql
+      - mailhog
 
   shopware53_php72:
     image: solutiondrive/docker-shopware-container:shopware5.3.7-php7.2
@@ -62,10 +65,13 @@ services:
       - ${PROJECT_DIR}:/opt/host:delegated
       - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
       - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./php/msmtprc:/etc/msmtprc
     links:
       - mysql
+      - mailhog
     depends_on:
       - mysql
+      - mailhog
 
   shopware53_php71:
     image: solutiondrive/docker-shopware-container:shopware5.3.7-php7.1
@@ -78,10 +84,13 @@ services:
       - ${PROJECT_DIR}:/opt/host:delegated
       - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
       - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./php/msmtprc:/etc/msmtprc
     links:
       - mysql
+      - mailhog
     depends_on:
       - mysql
+      - mailhog
 
   shopware53_php70:
     image: solutiondrive/docker-shopware-container:shopware5.3.7-php7.0
@@ -94,10 +103,13 @@ services:
       - ${PROJECT_DIR}:/opt/host:delegated
       - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
       - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./php/msmtprc:/etc/msmtprc
     links:
       - mysql
+      - mailhog
     depends_on:
       - mysql
+      - mailhog
 
   shopware53_php56:
     image: solutiondrive/docker-shopware-container:shopware5.3.7-php5.6
@@ -110,10 +122,13 @@ services:
       - ${PROJECT_DIR}:/opt/host:delegated
       - ./php/php.ini:/usr/local/etc/php/conf.d/zzz-override-php.ini
       - ./php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./php/msmtprc:/etc/msmtprc
     links:
       - mysql
+      - mailhog
     depends_on:
       - mysql
+      - mailhog
 
   mysql:
     image: mysql:5.7.20
@@ -123,6 +138,11 @@ services:
       - MYSQL_DATABASE=test
     ports:
       - "53331:3306"
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - "8053:8025"
 
 volumes:
   shopware53_php73:

@@ -64,6 +64,7 @@ function echo_configuration {
     echo "PHP 7.0: ${SHOPWARE_VERSION}870"
     echo "PHP 5.6: ${SHOPWARE_VERSION}856"
     echo "MySQL:   ${SHOPWARE_VERSION}331"
+    echo "Mailhog: 80${SHOPWARE_VERSION}"
     echo ""
     echo "PROJECT_DIR: ${PROJECT_DIR}"
     echo "PROJECT_NAME: ${PROJECT_NAME}"
