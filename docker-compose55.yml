@@ -120,3 +120,4 @@ volumes:
   shopware55_php72:
   shopware55_php71:
   shopware55_php70:
+  shopware55_php56:
