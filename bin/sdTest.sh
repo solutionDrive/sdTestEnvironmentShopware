@@ -45,7 +45,7 @@ export PROJECT_NAME="$( basename ${PROJECT_DIR} | tr '[:upper:]' '[:lower:]' )"
 export DOCKER_COMPOSE_YAML=${PROJECT_DIR}"/etc/test/docker-compose${SHOPWARE_VERSION}.yml"
 
 if [ "$1" != "init" ]; then
-    source ${PACKAGE_DIR}/etc/scripts/checkSdTestEnvironment.sh
+    source ${PACKAGE_DIR}/etc/scripts/checkSdTestEnvironment.sh ${SHOPWARE_VERSION}
 fi
 
 
