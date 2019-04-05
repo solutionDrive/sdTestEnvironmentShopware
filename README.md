@@ -36,29 +36,30 @@ Usage / First steps
 
 First you should start the testing docker containers (see also next section of this README):
 
-    vendor/bin/sdTest.sh start
+    vendor/bin/sdTest.sh start SHOPWARE_VERSION
     
     
 Handle plugin
 -------------
 
-For all following commands you must pass a php version, e.g. 71 for PHP 7.1 container:
+For all following commands you must pass a php and shopware version, 
+e.g. 71 for PHP 7.1 container and 54 for Shopware 5.4 :
 
 For adding the plugin run:
 
-    vendor/bin/sdPlugin.sh 71 add
+    vendor/bin/sdPlugin.sh 71 54 add
     
 For removing the plugin run:
 
-    vendor/bin/sdPlugin.sh 71 remove
+    vendor/bin/sdPlugin.sh 71 54 remove
     
 For activating the plugin run:
 
-    vendor/bin/sdPlugin.sh 71 activate    
+    vendor/bin/sdPlugin.sh 71 54 activate    
     
 For deactivating the plugin run:
 
-    vendor/bin/sdPlugin.sh 71 deactivate
+    vendor/bin/sdPlugin.sh 71 54 deactivate
 
 
 Controlling the testing environment
@@ -91,18 +92,18 @@ To restart your containers without loosing data you can run:
 
 Can can also run the containers in foreground to monitor the log output of the containers:
 
-    vendor/bin/sdTest.sh run
+    vendor/bin/sdTest.sh run SHOPWARE_VERSION
 
 Then you can stop the execution by pressing CTRL+C. The containers will exit cleanly.
 
 
 If you started the container in background using ```start```, you can view the logs by running:
 
-    vendor/bin/sdTest.sh logs
+    vendor/bin/sdTest.sh logs SHOPWARE_VERSION
 
 You can follow the logs (as known from ```tail -f``` or ```tailf```):
 
-    vendor/bin/sdTest.sh logs -f
+    vendor/bin/sdTest.sh logs SHOPWARE_VERSION -f
 
 To connect to the mysql server use ```127.0.0.1``` as host with port (default: 10331) configured in ```etc/test/docker-compose.yml```.
 
@@ -120,11 +121,11 @@ To be sure that you have the latest version of the (base) containers you can for
 
 To be sure to use the newest containers (not only build based containers):
 
-    vendor/bin/sdTest.sh pull
+    vendor/bin/sdTest.sh pull SHOPWARE_VERSION
 
 To destroy and restart your containers in one step without rebuilding images run:
 
-    vendor/bin/sdTest.sh reset
+    vendor/bin/sdTest.sh reset SHOPWARE_VERSION
 
 Executing a command in the testing environment
 ----------------------------------------------
