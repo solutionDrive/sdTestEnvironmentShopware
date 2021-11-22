@@ -6,7 +6,7 @@ SHOPWARE_VERSION=$2
 for arg do
   shift
   case $arg in
-    (52|53|54|55) : ;;
+    (52|53|54|55|56) : ;;
        (*) set -- "$@" "$arg" ;;
 
   esac
