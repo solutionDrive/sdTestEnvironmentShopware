@@ -22,9 +22,9 @@ add the following dependency to your project's composer.json's require-dev secti
 
 Then do a `composer update` or use `composer require --dev` instead. 
 
-To initialize the testing environment, e.g. for Shopware 5.4.x simply run the following:
+To initialize the testing environment, e.g. for Shopware 5.7.x simply run the following:
 
-    vendor/bin/sdTest.sh init 54
+    vendor/bin/sdTest.sh init 57
 
 This will create some files:
 
@@ -43,23 +43,23 @@ Handle plugin
 -------------
 
 For all following commands you must pass a php and shopware version, 
-e.g. 71 for PHP 7.1 container and 54 for Shopware 5.4 :
+e.g. 74 for PHP 7.4 container and 57 for Shopware 5.7 :
 
 For adding the plugin run:
 
-    vendor/bin/sdPlugin.sh 71 54 add
+    vendor/bin/sdPlugin.sh 74 57 add
     
 For removing the plugin run:
 
-    vendor/bin/sdPlugin.sh 71 54 remove
+    vendor/bin/sdPlugin.sh 74 57 remove
     
 For activating the plugin run:
 
-    vendor/bin/sdPlugin.sh 71 54 activate    
+    vendor/bin/sdPlugin.sh 74 57 activate    
     
 For deactivating the plugin run:
 
-    vendor/bin/sdPlugin.sh 71 54 deactivate
+    vendor/bin/sdPlugin.sh 74 57 deactivate
 
 
 Controlling the testing environment
@@ -70,10 +70,12 @@ List of SHOPWARE_VERSION:
 - 53 -> v5.3.x
 - 54 -> v5.4.x
 - 55 -> v5.5.x
+- 56 -> v5.6.x
+- 57 -> v5.7.x
 
-To start the containers e.g. with shopware 5.4 and get back your local shell just run:
+To start the containers e.g. with shopware 5.7 and get back your local shell just run:
 
-    vendor/bin/sdTest.sh start 54
+    vendor/bin/sdTest.sh start 57
     
 To stop the containers run:
 
@@ -131,10 +133,10 @@ Executing a command in the testing environment
 ----------------------------------------------
 
 Commands (for example to clear the cache or to run the setup) can be executed inside the container.
-You must give a version of php and shopware to execute command on, e.g. 71 for PHP 7.1 container and 54 for Shopware 5.4.x:
+You must give a version of php and shopware to execute command on, e.g. 74 for PHP 7.4 container and 57 for Shopware 5.7.x:
 
-    vendor/bin/sdRunInTest.sh 71 54 ./app/install.sh
+    vendor/bin/sdRunInTest.sh 74 57 ./app/install.sh
 
 If you want to you can even get a shell inside the PHP container:
 
-    vendor/bin/sdRunInTest.sh 71 54 /bin/bash
+    vendor/bin/sdRunInTest.sh 74 57 /bin/bash
